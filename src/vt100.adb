@@ -51,7 +51,7 @@ package body VT100 is
   begin
     if N > 0 then
       for I in 1 .. N loop
-        ATIO.Put (ASCII.ESC & "[1A");
+        ATIO.Put (ASCII.ESC & "[" & Nat_Img (N) & "A");
       end loop;
     end if;
   end Move_Cursor_Up;
@@ -61,17 +61,27 @@ package body VT100 is
   begin
     if N > 0 then
       for I in 1 .. N loop
-        ATIO.Put (ASCII.ESC & "[1B");
+        ATIO.Put (ASCII.ESC & "[" & Nat_Img (N) & "B");
       end loop;
     end if;
   end Move_Cursor_Down;
+
+  procedure Move_Cursor_Forward (N: in Natural)
+  is
+  begin
+    if N > 0 then
+      for I in 1 .. N loop
+        ATIO.Put (ASCII.ESC & "[" & Nat_Img (N) & "C");
+      end loop;
+    end if;
+  end Move_Cursor_Forward;
 
   procedure Move_Cursor_Backward (N: in Natural)
   is
   begin
     if N > 0 then
       for I in 1 .. N loop
-        ATIO.Put (ASCII.ESC & "[1D");
+        ATIO.Put (ASCII.ESC & "[" & Nat_Img (N) & "D");
       end loop;
     end if;
   end Move_Cursor_Backward;
