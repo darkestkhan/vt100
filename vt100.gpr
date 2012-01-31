@@ -1,14 +1,18 @@
 project VT100 is
 
+  Version := "0.1";
+
   for Languages use ("Ada");
   for Source_Dirs use ("src");
   for Object_Dir use "obj";
-  for Exec_Dir use ".";
+  for Library_Name use "vt100";
+  for Library_Dir use "lib";
+  for Library_Kind use "dynamic";
+  for Library_Version use "libvt100.so." & Version;
   for Source_Files use ("vt100.ads", "vt100.adb");
-  for Main use (<+Main_File+>);
 
   package Compiler is
-    CPU := ("-m64", "-mssse3", "-march=core2");
+    CPU := ("-m64", "-mssse3", "-march=core2", "-fPIC");
 
     Ada_Switches := ("-O3", "-fomit-frame-pointer", "-Wall", "-gnat05", "-gnata", "-gnatE", "-gnato", "-fstack-check");
     for Default_Switches ("Ada") use Ada_Switches & CPU;
