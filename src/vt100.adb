@@ -89,40 +89,34 @@ package body VT100 is
      By    : in Natural)
   is
   begin
-    case Where is
-      when Up =>
-        if By > 0 then
+    if By > 0 then
+      case Where is
+        when Up =>
           for I in 1 .. By loop
             Ada.Text_IO.Put
               (File => Ada.Text_IO.Standard_Error,
                Item => ASCII.ESC & "[" & Nat_Img (By) & "A");
           end loop;
-        end if;
-      when Down =>
-        if By > 0 then
+        when Down =>
           for I in 1 .. By loop
             Ada.Text_IO.Put
               (File => Ada.Text_IO.Standard_Error,
                Item => ASCII.ESC & "[" & Nat_Img (By) & "B");
           end loop;
-        end if;
-      when Forward =>
-        if By > 0 then
+        when Forward =>
           for I in 1 .. By loop
             Ada.Text_IO.Put
               (File => Ada.Text_IO.Standard_Error,
                Item => ASCII.ESC & "[" & Nat_Img (By) & "C");
           end loop;
-        end if;
-      when Backward =>
-        if By > 0 then
+        when Backward =>
           for I in 1 .. By loop
             Ada.Text_IO.Put
               (File => Ada.Text_IO.Standard_Error,
                Item => ASCII.ESC & "[" & Nat_Img (By) & "D");
           end loop;
-        end if;
-    end case;
+      end case;
+    end if;
   end Move_Cursor;
 
         ---------------------------------------------
