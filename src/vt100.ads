@@ -22,6 +22,7 @@ package VT100 is
 
   type Color is (Black, Red, Green, Yellow, Blue, Magenta, Cyan, White, Default);
   type Attribute is (Reset, Bold, Dim, Underline, Blink, Revers, Hidden);
+  type Direction is (Up, Down, Forward, Backward);
 
   procedure Move_Cursor (Line, Column: Natural);
   procedure Clear_Screen;
