@@ -54,6 +54,18 @@ package body VT100 is
        Item => ASCII.ESC & "[2J");
   end Clear_Screen;
 
+        -------------------------
+        -- E R A S E _ L I N E --
+        -------------------------
+
+  procedure Erase_Line
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[2K");
+  end Erase_Line;
+
         ---------------------------
         -- M O V E _ C U R S O R --
         ---------------------------
@@ -112,18 +124,6 @@ package body VT100 is
         end if;
     end case;
   end Move_Cursor;
-
-        -------------------------
-        -- E R A S E _ L I N E --
-        -------------------------
-
-  procedure Erase_Line
-  is
-  begin
-    Ada.Text_IO.Put
-      (File => Ada.Text_IO.Standard_Output,
-       Item => ASCII.ESC & "[2K");
-  end Erase_Line;
 
         ---------------------------------------------
         -- S A V E _ C U R S O R _ P O S I T I O N --
