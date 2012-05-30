@@ -46,46 +46,47 @@ package body VT100 is
     ATIO.Put_Line (ASCII.ESC & "[2J");
   end Clear_Screen;
 
-  procedure Move_Cursor_Up (N: in Natural)
+  procedure Move_Cursor
+    (Where : in Direction;
+     By    : in Natural)
   is
   begin
-    if N > 0 then
-      for I in 1 .. N loop
-        ATIO.Put (ASCII.ESC & "[" & Nat_Img (N) & "A");
-      end loop;
-    end if;
-  end Move_Cursor_Up;
-
-  procedure Move_Cursor_Down (N: in Natural)
-  is
-  begin
-    if N > 0 then
-      for I in 1 .. N loop
-        ATIO.Put (ASCII.ESC & "[" & Nat_Img (N) & "B");
-      end loop;
-    end if;
-  end Move_Cursor_Down;
-
-  procedure Move_Cursor_Forward (N: in Natural)
-  is
-  begin
-    if N > 0 then
-      for I in 1 .. N loop
-        ATIO.Put (ASCII.ESC & "[" & Nat_Img (N) & "C");
-      end loop;
-    end if;
-  end Move_Cursor_Forward;
-
-  procedure Move_Cursor_Backward (N: in Natural)
-  is
-  begin
-    if N > 0 then
-      for I in 1 .. N loop
-        ATIO.Put (ASCII.ESC & "[" & Nat_Img (N) & "D");
-      end loop;
-    end if;
-  end Move_Cursor_Backward;
-
+    case Where is
+      when Up =>
+        if By > 0 then
+          for I in 1 .. By loop
+            Ada.Text_IO.Put
+              (File => Ada.Text_IO.Standard_Error,
+               Item => ASCII.ESC & "[" & Nat_Img (By) & "A");
+          end loop;
+        end if;
+      when Down =>
+        if By > 0 then
+          for I in 1 .. By loop
+            Ada.Text_IO.Put
+              (File => Ada.Text_IO.Standard_Error,
+               Item => ASCII.ESC & "[" & Nat_Img (By) & "B");
+          end loop;
+        end if;
+      when Forward =>
+        if By > 0 then
+          for I in 1 .. By loop
+            Ada.Text_IO.Put
+              (File => Ada.Text_IO.Standard_Error,
+               Item => ASCII.ESC & "[" & Nat_Img (By) & "C");
+          end loop;
+        end if;
+      when Backward =>
+        if By > 0 then
+          for I in 1 .. By loop
+            Ada.Text_IO.Put
+              (File => Ada.Text_IO.Standard_Error,
+               Item => ASCII.ESC & "[" & Nat_Img (By) & "D");
+          end loop;
+        end if;
+    end case;
+  end Move_Cursor;
+  
   procedure Erase_Line
   is
   begin

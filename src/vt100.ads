@@ -26,10 +26,10 @@ package VT100 is
 
   procedure Move_Cursor (Line, Column: Natural);
   procedure Clear_Screen;
-  procedure Move_Cursor_Up (N: in Natural);
-  procedure Move_Cursor_Down (N: in Natural);
-  procedure Move_Cursor_Forward (N: in Natural);
-  procedure Move_Cursor_Backward (N: in Natural);
+  procedure Move_Cursor
+    (Where : Direction;
+     By    : in Natural);
+
   procedure Erase_Line;
   procedure Save_Cursor_Position;
   procedure Restore_Cursor_Position;
