@@ -69,7 +69,7 @@ package VT100 is
     -- Hidden     : all new text that will be printed will be invisible
 
   procedure Set_Attribute
-    (To: in Attribute);
+    (This: in Attribute);
   -- Sets attribute on.
 
         -------------------
@@ -81,11 +81,11 @@ package VT100 is
   -- Colors specified by VT100 API
 
   procedure Set_Foreground_Color
-    (To: in Color);
+    (This: in Color);
   -- Sets font color.
 
   procedure Set_Background_Color
-    (To: in Color);
+    (This: in Color);
   -- Sets background color.
 
 end VT100;

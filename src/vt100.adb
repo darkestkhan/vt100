@@ -154,7 +154,7 @@ package body VT100 is
         -------------------------------
 
   procedure Set_Attribute
-    (To: in Attribute)
+    (This: in Attribute)
   is
     C: Character;
   begin
@@ -177,7 +177,7 @@ package body VT100 is
         ---------------------------------------------
 
   procedure Set_Background_Color
-    (To: in Color)
+    (This: in Color)
   is
     C: Character;
   begin
@@ -202,7 +202,7 @@ package body VT100 is
         ---------------------------------------------
 
   procedure Set_Foreground_Color
-    (To: in Color)
+    (This: in Color)
   is
     C: Character;
   begin
