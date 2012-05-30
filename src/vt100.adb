@@ -24,27 +24,53 @@ with Ada.Text_IO;
 with Ada.Characters.Latin_1;
 package body VT100 is
 
-  package ATIO renames Ada.Text_IO;
+        -------------------
+        -- R E N A M E S --
+        -------------------
+
   package ASCII renames Ada.Characters.Latin_1;
 
-  function Nat_Img (N: in Natural) return String
+        -------------------
+        -- N A T _ I M G --
+        -------------------
+
+  function Nat_Img
+    (N: in Natural) return String
   is
     str: constant String := Natural'Image (N);
   begin
     return str (2 .. str'Last);
   end Nat_Img;
 
-  procedure Move_Cursor (Line, Column: Natural)
-  is
-  begin
-    ATIO.Put (ASCII.ESC & "[" & Nat_Img (Line) & ";" & Nat_Img (Column) & "H");
-  end Move_Cursor;
+        -----------------------------
+        -- C L E A R _ S C R E E N --
+        -----------------------------
 
   procedure Clear_Screen
   is
   begin
-    ATIO.Put_Line (ASCII.ESC & "[2J");
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[2J");
   end Clear_Screen;
+
+        ---------------------------
+        -- M O V E _ C U R S O R --
+        ---------------------------
+
+  procedure Move_Cursor
+    (Line   : in Natural;
+     Column : in Natural)
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[" & Nat_Img (Line) & ";" & Nat_Img (Column) & "H");
+  end Move_Cursor;
+
+        ---------------------------
+        -- M O V E _ C U R S O R --
+        ---------------------------
 
   procedure Move_Cursor
     (Where : in Direction;
@@ -86,75 +112,114 @@ package body VT100 is
         end if;
     end case;
   end Move_Cursor;
-  
+
+        -------------------------
+        -- E R A S E _ L I N E --
+        -------------------------
+
   procedure Erase_Line
   is
   begin
-    ATIO.Put (ASCII.ESC & "[2K");
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[2K");
   end Erase_Line;
+
+        ---------------------------------------------
+        -- S A V E _ C U R S O R _ P O S I T I O N --
+        ---------------------------------------------
 
   procedure Save_Cursor_Position
   is
   begin
-    ATIO.Put (ASCII.ESC & "[s");
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[s");
   end Save_Cursor_Position;
+
+        ---------------------------------------------------
+        -- R E S T O R E _ C U R S O R _ P O S I T I O N --
+        ---------------------------------------------------
 
   procedure Restore_Cursor_Position
   is
   begin
-    ATIO.Put (ASCII.ESC & "[u");
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[u");
   end Restore_Cursor_Position;
 
-  procedure Set_Attribute (To: in Attribute)
+        -------------------------------
+        -- S E T _ A T T R I B U T E --
+        -------------------------------
+
+  procedure Set_Attribute
+    (To: in Attribute)
   is
     C: Character;
   begin
     case To is
-      when Reset => C := '0';
-      when Bold => C := '1';
-      when Dim => C := '2';
-      when Underline => C := '3';
-      when Blink => C := '4';
-      when Revers => C := '5';
-      when Hidden => C := '6';
+      when Reset      => C := '0';
+      when Bold       => C := '1';
+      when Dim        => C := '2';
+      when Underline  => C := '3';
+      when Blink      => C := '4';
+      when Revers     => C := '5';
+      when Hidden     => C := '6';
     end case;
-    ATIO.Put (ASCII.ESC & '[' & C & 'm');
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & '[' & C & 'm');
   end Set_Attribute;
 
-  procedure Set_Background_Color (To: in Color)
+        ---------------------------------------------
+        -- S E T _ B A C K G R O U N D _ C O L O R --
+        ---------------------------------------------
+
+  procedure Set_Background_Color
+    (To: in Color)
   is
     C: Character;
   begin
     case To is
-      when Black => C := '0';
-      when Red => C := '1';
-      when Green => C := '2';
-      when Yellow => C := '3';
-      when Blue => C := '4';
-      when Magenta => C := '5';
-      when Cyan => C := '6';
-      when White => C := '7';
-      when Default => C := '9';
+      when Black    => C := '0';
+      when Red      => C := '1';
+      when Green    => C := '2';
+      when Yellow   => C := '3';
+      when Blue     => C := '4';
+      when Magenta  => C := '5';
+      when Cyan     => C := '6';
+      when White    => C := '7';
+      when Default  => C := '9';
     end case;
-    ATIO.Put (ASCII.ESC & "[4" & C & 'm');
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[4" & C & 'm');
   end Set_Background_Color;
 
-  procedure Set_Foreground_Color (To: in Color)
+        ---------------------------------------------
+        -- S E T _ F O R E G R O U N D _ C O L O R --
+        ---------------------------------------------
+
+  procedure Set_Foreground_Color
+    (To: in Color)
   is
     C: Character;
   begin
     case To is
-      when Black => C := '0';
-      when Red => C := '1';
-      when Green => C := '2';
-      when Yellow => C := '3';
-      when Blue => C := '4';
-      when Magenta => C := '5';
-      when Cyan => C := '6';
-      when White => C := '7';
-      when Default => C := '9';
+      when Black    => C := '0';
+      when Red      => C := '1';
+      when Green    => C := '2';
+      when Yellow   => C := '3';
+      when Blue     => C := '4';
+      when Magenta  => C := '5';
+      when Cyan     => C := '6';
+      when White    => C := '7';
+      when Default  => C := '9';
     end case;
-    ATIO.Put (ASCII.ESC & "[3" & C & 'm');
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[3" & C & 'm');
   end Set_Foreground_Color;
 
 end VT100;
