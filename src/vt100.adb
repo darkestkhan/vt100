@@ -219,6 +219,42 @@ package body VT100 is
        Item => ASCII.ESC & "[u");
   end Restore_Cursor_Position;
 
+        -------------------
+        -- S E T _ T A B --
+        -------------------
+
+  procedure Set_Tab
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "H");
+  end Set_Tab;
+
+        -----------------------
+        -- C L E A R _ T A B --
+        -----------------------
+
+  procedure Clear_Tab
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[g");
+  end Clear_Tab;
+
+        ---------------------------------
+        -- C L E A R _ A L L _ T A B S --
+        ---------------------------------
+
+  procedure Clear_All_Tabs
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[3g");
+  end Clear_All_Tabs;
+
         -------------------------------
         -- S E T _ A T T R I B U T E --
         -------------------------------
@@ -228,7 +264,7 @@ package body VT100 is
   is
     C: Character;
   begin
-    case To is
+    case This is
       when Reset      => C := '0';
       when Bold       => C := '1';
       when Dim        => C := '2';
@@ -251,7 +287,7 @@ package body VT100 is
   is
     C: Character;
   begin
-    case To is
+    case This is
       when Black    => C := '0';
       when Red      => C := '1';
       when Green    => C := '2';
@@ -276,7 +312,7 @@ package body VT100 is
   is
     C: Character;
   begin
-    case To is
+    case This is
       when Black    => C := '0';
       when Red      => C := '1';
       when Green    => C := '2';

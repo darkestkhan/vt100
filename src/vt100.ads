@@ -84,6 +84,19 @@ package VT100 is
   procedure Restore_Cursor_Position;
   -- Moves cursor to position stored in internal state of terminal.
 
+        ---------------------------
+        -- T A B   C O N T R O L --
+        ---------------------------
+
+  procedure Set_Tab;
+  -- Sets a tab at the current position.
+
+  procedure Clear_Tab;
+  -- Clears tab at the current position.
+
+  procedure Clear_All_Tabs;
+  -- Clears all tabs.
+
         ---------------------------------------
         -- A T T R I B U T E   S E T T I N G --
         ---------------------------------------
