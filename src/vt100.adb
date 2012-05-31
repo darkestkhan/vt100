@@ -66,6 +66,34 @@ package body VT100 is
        Item => ASCII.ESC & "[2K");
   end Erase_Line;
 
+        ---------------
+        -- E R A S E --
+        ---------------
+
+  procedure Erase
+    (Where  : in Direction)
+  is
+  begin
+    case Where is
+      when Up       =>
+        Ada.Text_IO.Put
+          (File => Ada.Text_IO.Standard_Output,
+           Item => ASCII.ESC & "[1J");
+      when Down     =>
+        Ada.Text_IO.Put
+          (File => Ada.Text_IO.Standard_Output,
+           Item => ASCII.ESC & "[J");
+      when Forward  =>
+        Ada.Text_IO.Put
+          (File => Ada.Text_IO.Standard_Output,
+           Item => ASCII.ESC & "[K");
+      when Backward =>
+        Ada.Text_IO.Put
+          (File => Ada.Text_IO.Standard_Output,
+           Item => ASCII.ESC & "[1K");
+    end case;
+  end Erase;
+
         ---------------------------
         -- M O V E _ C U R S O R --
         ---------------------------

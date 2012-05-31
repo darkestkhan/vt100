@@ -31,17 +31,25 @@ package VT100 is
   procedure Erase_Line;
   -- Erase everything in line at which cursor is positioned.
 
+  type Direction is (Up, Down, Forward, Backward);
+
+  procedure Erase
+    (Where  : in Direction);
+  -- Erase in given direction:
+    -- Up       : Erases screen from current line to the top of the screen.
+    -- Down     : Erases screen from current line to the bottom of the screen.
+    -- Forward  : Erases from cursor position to the end of current line.
+    -- Backward : Erases from cursor position to the beginning of current line.
+
         -------------------
         -- CURSOR MOVING --
         -------------------
 
   procedure Move_Cursor
-    (Line : in Natural;
-     Column: in Natural);
+    (Line   : in Natural;
+     Column : in Natural);
   -- Moves cursor to position specified by coordinates.
   -- Position (0, 0) is upper left corner of screen.
-
-  type Direction is (Up, Down, Forward, Backward);
 
   procedure Move_Cursor
     (Where : Direction;
