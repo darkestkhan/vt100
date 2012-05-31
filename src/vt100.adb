@@ -42,6 +42,38 @@ package body VT100 is
     return str (2 .. str'Last);
   end Nat_Img;
 
+        ---------------
+        -- R E S E T --
+        ---------------
+
+  procedure Reset
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "c");
+  end Reset;
+
+        -------------------------------
+        -- L I N E _ W R A P P I N G --
+        -------------------------------
+
+  procedure Line_Wrapping
+    (State  : in Boolean)
+  is
+  begin
+    case State is
+      when False =>
+        Ada.Text_IO.Put
+          (File => Ada.Text_IO.Standard_Output,
+           Item => ASCII.ESC & "[7l");
+      when True =>
+        Ada.Text_IO.Put
+          (File => Ada.Text_IO.Standard_Output,
+           Item => ASCII.ESC & "[7h");
+    end case;
+  end Line_Wrapping;
+
         -----------------------------
         -- C L E A R _ S C R E E N --
         -----------------------------

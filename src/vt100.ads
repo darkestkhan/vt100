@@ -21,6 +21,18 @@ pragma License (GPL);
 -- This library is simple and rather minimal ANSI/VT100 API wrapper for Ada
 package VT100 is
 
+        ---------------------------------
+        -- T E R M I N A L   S E T U P --
+        ---------------------------------
+
+  procedure Reset;
+  -- Reset all terminal settings to default.
+
+  procedure Line_Wrapping
+    (State  : in Boolean);
+  -- If state is True then text wraps to next line if longer than the length
+  -- of the display area.
+
         -----------------------------------
         -- S C R E E N   C L E A R I N G --
         -----------------------------------
