@@ -74,6 +74,30 @@ package body VT100 is
     end case;
   end Line_Wrapping;
 
+        -------------------------------------
+        -- U S E _ D E F A U L T _ F O N T --
+        -------------------------------------
+
+  procedure Use_Default_Font
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "(");
+  end Use_Default_Font;
+
+        -----------------------------------------
+        -- U S E _ A L T E R N A T E _ F O N T --
+        -----------------------------------------
+
+  procedure Use_Alternate_Font
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & ")");
+  end Use_Alternate_Font;
+
         -----------------------------
         -- C L E A R _ S C R E E N --
         -----------------------------

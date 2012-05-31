@@ -33,6 +33,16 @@ package VT100 is
   -- If state is True then text wraps to next line if longer than the length
   -- of the display area.
 
+        ---------------
+        -- F O N T S --
+        ---------------
+
+  procedure Use_Default_Font;
+  -- Print in default font.
+
+  procedure Use_Alternate_Font;
+  -- Print in alternate font.
+
         -----------------------------------
         -- S C R E E N   C L E A R I N G --
         -----------------------------------
