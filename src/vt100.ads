@@ -18,7 +18,7 @@ pragma License (GPL);
 --    You should have received a copy of the GNU General Public License     --
 --   along with this program. If not, see <http://www.gnu.org/licenses/>.   --
 ------------------------------------------------------------------------------
--- This library is simple and rather minimalistic VT100 API wrapper for Ada
+-- This library is simple and rather minimal ANSI/VT100 API wrapper for Ada
 package VT100 is
 
         ---------------------
@@ -95,5 +95,20 @@ package VT100 is
   procedure Set_Background_Color
     (This: in Color);
   -- Sets background color.
+
+        ---------------------
+        -- P R I N T I N G --
+        ---------------------
+  -- Local printing support.
+
+  procedure Print_Screen;
+  -- Print the current screen.
+
+  procedure Print_Line;
+  -- Print the current line.
+
+  procedure Print_Log
+    (State  : in Boolean);
+  -- Set printing log - if True then all received text is echoed to a printer.
 
 end VT100;

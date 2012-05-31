@@ -236,4 +236,48 @@ package body VT100 is
        Item => ASCII.ESC & "[3" & C & 'm');
   end Set_Foreground_Color;
 
+        -----------------------------
+        -- P R I N T _ S C R E E N --
+        -----------------------------
+
+  procedure Print_Screen
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[i");
+  end Print_Screen;
+
+        -------------------------
+        -- P R I N T _ L I N E --
+        -------------------------
+
+  procedure Print_Line
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[1i");
+  end Print_Line;
+
+        -----------------------
+        -- P R I N T _ L O G --
+        -----------------------
+
+  procedure Print_Log
+    (State  : in Boolean)
+  is
+  begin
+    case State is
+      when False =>
+        Ada.Text_IO.Put
+          (File => Ada.Text_IO.Standard_Output,
+           Item => ASCII.ESC & "[4i");
+      when True =>
+        Ada.Text_IO.Put
+          (File => Ada.Text_IO.Standard_Output,
+           Item => ASCII.ESC & "[5i");
+    end case;
+  end Print_Log;
+
 end VT100;
