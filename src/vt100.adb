@@ -256,6 +256,87 @@ package body VT100 is
   end Clear_All_Tabs;
 
         -------------------------------
+        -- S C R O L L _ S C R E E N --
+        -------------------------------
+
+  procedure Scroll_Screen
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[r");
+  end Scroll_Screen;
+
+        -------------------------------
+        -- S C R O L L _ S C R E E N --
+        -------------------------------
+
+  procedure Scroll_Screen
+    (From : in Natural;
+     To   : in Natural)
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "[" & Nat_Img (N => From) & ";" &
+               Nat_Img (N => To) & "r");
+  end Scroll_Screen;
+
+        ---------------------------
+        -- S C R O L L _ D O W N --
+        ---------------------------
+
+  procedure Scroll_Down
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "D");
+  end Scroll_Down;
+
+        ---------------------------
+        -- S C R O L L _ D O W N --
+        ---------------------------
+
+  procedure Scroll_Down
+    (Lines  : in Natural)
+  is
+  begin
+    if Lines > 0 then
+      for I in 1 .. Lines loop
+        Scroll_Down;
+      end loop;
+    end if;
+  end Scroll_Down;
+
+        -----------------------
+        -- S C R O L L _ U P --
+        -----------------------
+
+  procedure Scroll_Up
+  is
+  begin
+    Ada.Text_IO.Put
+      (File => Ada.Text_IO.Standard_Output,
+       Item => ASCII.ESC & "H");
+  end Scroll_Up;
+
+        -----------------------
+        -- S C R O L L _ U P --
+        -----------------------
+
+  procedure Scroll_Up
+    (Lines  : in Natural)
+  is
+  begin
+    if Lines > 0 then
+      for I in 1 .. Lines loop
+        Scroll_Up;
+      end loop;
+    end if;
+  end Scroll_Up;
+
+        -------------------------------
         -- S E T _ A T T R I B U T E --
         -------------------------------
 

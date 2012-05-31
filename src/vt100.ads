@@ -97,6 +97,32 @@ package VT100 is
   procedure Clear_All_Tabs;
   -- Clears all tabs.
 
+        -----------------------
+        -- S C R O L L I N G --
+        -----------------------
+
+  procedure Scroll_Screen;
+  -- Enable scrolling for entire display.
+
+  procedure Scroll_Screen
+    (From : in Natural;
+     To   : in Natural);
+  -- Enable scrolling from row FROM to row TO.
+
+  procedure Scroll_Down;
+  -- Scroll display down one line.
+
+  procedure Scroll_Down
+    (Lines  : in Natural);
+  -- Scroll display down by LINES lines.
+
+  procedure Scroll_Up;
+  -- Scroll display up one line.
+
+  procedure Scroll_Up
+    (Lines  : in Natural);
+  -- Scroll display up by LINES lines.
+
         ---------------------------------------
         -- A T T R I B U T E   S E T T I N G --
         ---------------------------------------
