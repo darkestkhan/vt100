@@ -21,9 +21,9 @@ pragma License (GPL);
 -- This library is simple and rather minimal ANSI/VT100 API wrapper for Ada
 package VT100 is
 
-        ---------------------
-        -- SCREEN CLEARING --
-        ---------------------
+        -----------------------------------
+        -- S C R E E N   C L E A R I N G --
+        -----------------------------------
 
   procedure Clear_Screen;
   -- Clears screen.
@@ -41,9 +41,9 @@ package VT100 is
     -- Forward  : Erases from cursor position to the end of current line.
     -- Backward : Erases from cursor position to the beginning of current line.
 
-        -------------------
-        -- CURSOR MOVING --
-        -------------------
+        -------------------------------
+        -- C U R S O R   M O V I N G --
+        -------------------------------
 
   procedure Move_Cursor
     (Line   : in Natural;
@@ -62,9 +62,9 @@ package VT100 is
   procedure Restore_Cursor_Position;
   -- Moves cursor to position stored in internal state of terminal.
 
-        -----------------------
-        -- ATTRIBUTE SETTING --
-        -----------------------
+        ---------------------------------------
+        -- A T T R I B U T E   S E T T I N G --
+        ---------------------------------------
 
   type Attribute is (Reset, Bold, Dim, Underline, Blink, Revers, Hidden);
   -- Attributes that can be set by calls to VT100 API:
@@ -80,9 +80,9 @@ package VT100 is
     (This: in Attribute);
   -- Sets attribute on.
 
-        -------------------
-        -- COLOR SETTING --
-        -------------------
+        -------------------------------
+        -- C O L O R   S E T T I N G --
+        -------------------------------
 
   type Color is (Black, Red, Green, Yellow, Blue,
                  Magenta, Cyan, White, Default);
