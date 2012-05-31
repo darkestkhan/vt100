@@ -76,7 +76,7 @@ package VT100 is
   procedure Move_Cursor
     (Where : Direction;
      By    : in Natural);
-  -- Moves cursor in Direction by By positions.
+  -- Moves cursor in direction WHERE by BY positions.
 
   procedure Save_Cursor_Position;
   -- Saves current cursor position in internal state of VT100 capable terminal.

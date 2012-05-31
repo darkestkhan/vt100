@@ -19,7 +19,7 @@ pragma License (GPL);
 --   along with this program. If not, see <http://www.gnu.org/licenses/>.   --
 ------------------------------------------------------------------------------
 -- TODO:
---  - finish adding escape codes
+--  - finish adding escape codes [cursor controls]
 with Ada.Text_IO;
 with Ada.Characters.Latin_1;
 package body VT100 is
