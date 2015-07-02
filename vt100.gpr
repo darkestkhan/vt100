@@ -9,10 +9,11 @@ project VT100 is
   for Library_Dir use "lib";
   for Library_Kind use "dynamic";
   for Library_Version use "libvt100.so." & Version;
-  for Source_Files use ("vt100.ads", "vt100.adb");
+  for Source_Files use ("vt100.ads", "vt100.adb",
+                        "vt100-utils.ads", "vt100-utils.adb");
 
   package Compiler is
-    CPU := ("-m64", "-mssse3", "-march=core2", "-fPIC");
+    CPU := external ("CPU", "-m64 -mssse3 -march=native -fPIC");
     OPT   := ("-O3", "-fomit-frame-pointer");
     WARN  := ("-Wall");
 
