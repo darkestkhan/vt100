@@ -16,9 +16,10 @@ project VT100 is
     CPU := external ("CPU", "-m64 -mssse3 -march=native -fPIC");
     OPT   := ("-O3", "-fomit-frame-pointer");
     WARN  := ("-Wall");
+    STYLE := ("-gnaty2aAbdefhiklM80nOprSux");
 
     Ada_Switches := ("-gnat05", "-gnata", "-gnatE", "-gnato", "-fstack-check");
-    for Default_Switches ("Ada") use Ada_Switches & CPU & OPT & WARN;
+    for Default_Switches ("Ada") use Ada_Switches & CPU & OPT & WARN & STYLE;
 
     C_Switches := ("-O3", "-C99", "-fstack-check");
     for Default_Switches ("C") use C_Switches & CPU & OPT & WARN;
